@@ -1,6 +1,5 @@
 package com.driver.controller;
 
-import com.driver.BlogsApplication;
 import com.driver.models.Blog;
 import com.driver.services.BlogService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,13 +17,9 @@ public class BlogController {
     BlogService blogService;
 
     @PostMapping
-    public ResponseEntity createBlog(@RequestParam Integer userId , @RequestParam String title, @RequestParam String content) {
+    public ResponseEntity createBlog(@RequestParam Integer userId, @RequestParam String title, @RequestParam String content) throws Exception{
         // Create a blog and add it under given user
-        try{
-            blogService.createAndReturnBlog(userId,title,content);
-        }
-        catch (Exception ignored){
-        }
+        blogService.createAndReturnBlog(userId, title, content);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
@@ -35,6 +30,3 @@ public class BlogController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }
-
-
-
